@@ -8,6 +8,7 @@ RUN apk add --no-cache nginx && \
     mkdir -p /run/nginx/ && \
     cd /tmp/ && \
     mv run.sh /app && \
-    rm -rf /var/cache/apk/*
+    rm -rf /var/cache/apk/* && \
+    rm -rf /tmp/*
 CMD /bin/sh /app/run.sh
 EXPOSE 80
