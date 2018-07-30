@@ -1,6 +1,7 @@
 FROM keymetrics/pm2:latest-alpine
 MAINTAINER 704504886@qq.com
-COPY run.sh /tmp/
+COPY run.sh app.conf /tmp/
+ENV PROXYURL=127.0.0.1:3002
 RUN apk add --no-cache nginx && \
     mkdir -p /app/project && \
     mkdir -p /app/log/pm2 && \
@@ -8,6 +9,8 @@ RUN apk add --no-cache nginx && \
     mkdir -p /run/nginx/ && \
     cd /tmp/ && \
     mv run.sh /app && \
+    cat app.conf > /etc/nginx/conf.d/default.conf  && \
+    sed -i "s/yourproxyurl/$PROXYURL/g"
     rm -rf /var/cache/apk/* && \
     rm -rf /tmp/*
 CMD /bin/sh /app/run.sh
