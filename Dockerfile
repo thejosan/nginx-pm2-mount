@@ -10,7 +10,6 @@ RUN apk add --no-cache nginx && \
     cd /tmp/ && \
     mv run.sh /app && \
     cat app.conf > /etc/nginx/conf.d/default.conf  && \
-    sed -i "s/yourproxyurl/$PROXYURL/g" /etc/nginx/conf.d/default.conf && \
     rm -rf /var/cache/apk/* && \
     rm -rf /tmp/*
 CMD /bin/sh /app/run.sh
