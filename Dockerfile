@@ -2,6 +2,7 @@ FROM keymetrics/pm2:latest-alpine
 MAINTAINER 704504886@qq.com
 COPY run.sh app.conf /tmp/
 ENV PROXYURL=127.0.0.1:3002
+ENV RUNCOMMAND="run sdt:start"
 ENV APPDIR=/app/project/apptest
 RUN apk add --no-cache nginx && \
     mkdir -p /app/project && \
